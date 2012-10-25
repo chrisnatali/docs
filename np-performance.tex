@@ -1,0 +1,110 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\title{Network Planner:  Performance Tuning}
+\author{Chris Natali}
+\institute{Modi Labs at Columbia University}
+\date{October 23, 2012}
+\begin{document}
+
+\begin{frame}
+  \begin{center}
+  Network Planner Performance
+  \end{center}
+
+  \bigskip
+
+  Optimus:  Machine where we run "big" NP scenarios
+
+  32G RAM, Dual Quad Core, SSD (which didn't survive)
+
+  and yet... 
+ 
+  \bigskip 
+ 
+  \begin{tabular}{|l|l|l|l|}
+    \textbf{Num Nodes} & \textbf{Grid Size} & \textbf{Memory Consumption} & \textbf{Run Time} \\
+    937 & 3696 & 3G  & 339 minutes \\
+    5577 & 4641 & 36G  & 3966 minutes \\
+  \end{tabular}
+
+  \bigskip
+ 
+  That last scenario originally took even longer due to excessive paging.  
+\end{frame}
+
+\begin{frame}{Run Time}
+  
+  Problem:
+  \begin{itemize}
+  \item[] {\small Profiling revealed intersection test as the dominant time consumer. (Up to 99\% as scenario size increases)}
+  \item[] {\small For each candidate segment that passes mvMax criteria, check intersection with every segment in network.}
+  \item[] {\small If 20k segments pass, and there are 1k segments in network:  20M intersection tests. (each is several steps)}
+  \end{itemize}
+
+  Solution:
+  \begin{itemize}
+  \item[] {\small Introduce R-Tree to store/search network for intersections.}
+  \item[] {\small Now for each candidate segment, there are $log_b(K)$ intersection calls.}
+  \item[] {\small $b$ is tree branching factor and $K$ is the number segments in the network.} 
+  \item[] {\small So for the same scenario above, if branching factor is 2, there are $\frac{1}{10}$th of the intersection tests.}   
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Memory}
+  
+  Problem:
+  \begin{itemize}
+  \item[] There are $\frac{(n)(n-1)}{2} = {n \choose 2}$ candidate segments ($n$ is the number of nodes in the scenario)
+  \item[] For 5k nodes, that's $>$ 12M candidate segments 
+  \item[] Each candidate segment is a Python object, originally consuming 1k, for a total of 12G 
+  \end{itemize}
+
+  \bigskip 
+
+  Solution:
+  \begin{itemize}
+  \item[] Represent candidate segments as a 3xN matrix
+  \item[] uint16, uint16, float32 $\rightarrow$ node index 1, node index 2, length
+  \item[] 8 bytes each
+  \item[] So now the candidate segments for the scenario above consume 96M 
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Results}
+  
+  
+  Before:
+
+  \bigskip 
+  
+  \begin{tabular}{ | l | l | l | l | }
+    \textbf{Num Nodes} & \textbf{Grid Size} & \textbf{Memory Consumption} & \textbf{Run Time} \\
+    937 & 3696 & 3G  & 339 minutes \\
+    5577 & 4641 & 36G  & 3966 minutes \\
+  \end{tabular}
+
+  \bigskip 
+
+  After:
+
+  \bigskip 
+
+  \begin{tabular}{ | l | l | l | l | }
+    \textbf{Num Nodes} & \textbf{Grid Size} & \textbf{Memory Consumption} & \textbf{Run Time} \\
+    937 & 3696 & 1G  & 27 minutes \\
+    5577 & 4641 & 1.2G  & 276 minutes \\
+  \end{tabular}
+
+  \bigskip
+
+  Practically, 10X memory and run-time reduction for ``large" scenarios
+
+  Up to 60X memory reduction within modKruskal
+
+  More dramatic improvements as scenario size grows
+  
+\end{frame}
+
+\end{document}
