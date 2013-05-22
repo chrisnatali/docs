@@ -1,0 +1,121 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\title{MV Grid Mapping:  A Technical Retrospective}
+\author{Chris Natali}
+\institute{Modi Labs at Columbia University}
+\date{May 22, 2013}
+\begin{document}
+
+\begin{frame}
+  Tuesday, January 29th
+
+  \bigskip
+  \begin{itemize}
+  \item[] Edwin:  Can we chat?  We just had a project mapping MV line come up for Indonesia in the past few hours...
+  \item[] Chris:  I'm on my way into the lab...I'll be available in about an hour.
+  \end{itemize}
+
+  \bigskip 
+  At that point, our timeline scales were slightly off...
+
+  \bigskip 
+
+  \begin{tabular}{|l|l|l|l|l|l|}
+    Edwin: & 6pm & 7pm & 8pm & 9pm & ...\\
+    \hline
+    Chris: & Week 1 & Week 2 & Week 3 & Week 4 & ...\\
+  \end{tabular}
+
+\end{frame}
+
+\begin{frame}{Goals}
+  
+  Primary: 
+  \begin{itemize}
+  \item[] Capture the existing Medium Voltage grid for input into NetworkPlanner
+  \end{itemize}
+
+  \bigskip 
+
+  Secondary: 
+  \begin{itemize}
+  \item[] Define a system for ongoing capture and maintenance of grid data 
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{OpenStreetMap}
+  
+  Virtues:
+  \begin{itemize}
+  \item[] Topological Model:  Nodes, Ways and Relations
+  \item[] Flexibility via Tags
+  \item[] Versioned
+  \item[] Open
+  \item[] Loads of existing data and tools
+  \end{itemize}
+
+
+  \bigskip 
+
+  Issues:
+  \begin{itemize}
+  \item[] Open license might not fly
+  \item[] Technical uncertainty
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Approach 1: The Black Hole}
+  \begin{center}
+
+
+  Points via FormHub, Lines via OSMTracker (GPS)
+  
+  $\Downarrow$ 
+  
+  Best Practices, Dropbox 
+  
+  $\Downarrow$ 
+  
+  Ill-Defined Processing 
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{Approach 2: Frankenstein}
+  \begin{center}
+
+
+  Points via FormHub, Lines via OSMTracker (GPS)
+  
+  $\Downarrow$ 
+  
+  Synchronization, JOSM 
+  
+  $\Downarrow$ 
+  
+  Private Instance of OpenStreetMaps (plngridmaps.modilabs.org)
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{Results}
+
+
+  Numbers (toward our Primary Goal):
+  \begin{itemize}
+  \item[] 700 km of mv grid digitized
+  \item[] Average of about 50 km of mv grid captured per day
+  \item[] 2357 km of mv grid managed 
+  \end{itemize}
+  
+  \bigskip 
+
+  The System (toward our Secondary Goal):
+  \begin{itemize}
+  \item[] Still not pretty, but effective and improvements to come
+  \end{itemize}
+  
+\end{frame}
+\end{document}
