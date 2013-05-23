@@ -4,7 +4,9 @@ As described in a previous post, our lab recently undertook the task of assistin
 
 ### STRIKING WHILE THE IRON IS HOT
 
-4 months ago, our Software Engineering team in NY was contacted by our Energy Planning team who was in Indonesia.  The details weren't too clear at first, but we understood that we had agreed to take on a project to map some Medium Voltage line for PLN.  For a brief moment, our envisioned timelines for this work were a little off.  The Software Engineering team was thinking in terms of weeks, but we really needed to be thinking in terms of days, even hours, because the training and data acquisition was to start in...2 days!  Were we really willing to sacrifice architectural elegance in order to take advantage of this opportunity?  [Architecture Astronauts](http://www.joelonsoftware.com/items/2008/05/01.html) unite!
+4 months ago, our Software Engineering team in NY was contacted by our Energy Planning team who was in Indonesia with an urgent request.  The details weren't too clear at first, but we understood that we had agreed to take on a project to map some Medium Voltage line for PLN.  We had a sense that an opportunity like this would present itself, but envisioned a timeline of at least a few weeks.  We soon realized we needed to be thinking in terms of days, even hours, because the training and data acquisition was to start in...2 days!  
+
+Were we really willing to sacrifice architectural elegance in order to take advantage of this opportunity?  [Architecture Astronauts](http://www.joelonsoftware.com/items/2008/05/01.html) unite!
   
 ### REALITY
 
@@ -12,7 +14,7 @@ OK, the situation wasn't THAT dire.  We actually have a proven set of tools for 
 
 ### ACTUALLY...
 
-That's kind of cumbersome.  In our initial training with PLN, we made an attempt to impose a structure that would allow us to piece together the network data accurately at a later point.  This involved being disciplined about starting and stopping tracking at appropriate points, capturing branch points with the associated number of radiating segments and even naming the gps trace files according to the mv-line identity.  Again, the rational seemed sound, but what we captured was quickly amounting to a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data").  We could work with it, but organizing it and cleaning it up was quite laborious.  
+It was kind of cumbersome.  In our initial training with PLN, we made an attempt to impose a structure that would allow us to piece together the network data accurately at a later point.  This involved being disciplined about starting and stopping tracking at appropriate points, capturing branch points with the associated number of radiating segments and even naming the gps trace files according to the mv-line identity.  Again, the rational seemed sound, but what we captured was quickly amounting to a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data").  We could work with it, but organizing it and cleaning it up was quite laborious.  
 
 ### FILLING THE VOID
 
@@ -29,7 +31,7 @@ After extolling the virtues of OpenStreetMap and it's topological elegance we we
 
 To resolve #1 we decided to continue to use FormHub to collect the salient points of the grid.  This necessitated a synchronization scheme between FormHub and our OpenStreetMap solution, but we'll get to that.  
 
-The one obvious solution to #2 was to deploy our own instance of the OpenStreetMap server and database (called the [Rails Port](http://wiki.openstreetmap.org/wiki/The_Rails_Port).  This was NOT an easy decision.  It would require us to maintain our instance with an ill-defined path for merging source and data back to the master at some point.  In the end, we decided that the flexibility gained by having our own instance was worthwhile and we began setting it up.  
+The one obvious solution to #2 was to deploy our own instance of the OpenStreetMap server and database (called the [Rails Port](http://wiki.openstreetmap.org/wiki/The_Rails_Port).  This was NOT a simple option.  It would require us to maintain our instance with an ill-defined path for merging any source and data back to the master at some point.  In the end, we decided that the flexibility gained by having our own instance was worthwhile and we began setting it up.  
 
 ### THE UGLY DUCKLING
 
@@ -43,4 +45,4 @@ And then we used the system to capture the data we needed as we trained PLN on i
 
 ## A SWAN?
 
-Was it elegant?  Hardly.  Effective?  We like to think so.  We used it to capture and integrate over 2300 km of grid data into a cohesive dataset that can now be updated by any of its users.  Will this Ugly Duckling turn into a swan?  Time will tell.  
+Was it elegant?  Hardly.  Effective?  We like to think so.  We used it to capture and integrate over 2300 km of grid data into a cohesive dataset that can now be updated by any of its users.  Will this Ugly Duckling turn into a swan?  A lot of that rides on whether and how we reconcile our instance of OpenStreetMap and its data with the Master.  Time will tell. 
