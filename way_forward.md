@@ -37,7 +37,7 @@ As our 2nd round of on-site training and data capture was quickly approaching, i
 
 ### EXECUTION
 
-In hindsight, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  We basically focused on incremental progress in a "damn the torpedoes" style (too much?).  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like Sub-Stations and End-Poles...a simple change with dramatic effect.  
+In hindsight, once we had a working system, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  We basically focused on incremental progress in a "damn the torpedoes" style (too much?).  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like Sub-Stations and End-Poles...a simple change with dramatic effect.  
 
 And then we used the system to capture the data we needed as we trained PLN on its use.  We even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
 
