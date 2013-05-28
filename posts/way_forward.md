@@ -1,4 +1,4 @@
-# A "WAY" FORWARD:  Streamlining grid data collection with OpenStreetMaps
+# A "WAY" FORWARD:  Streamlining power grid data collection with OpenStreetMaps
 
 As described in a [previous post](http://modilabs.github.io/modilabs-site/blog/2013/05/16/mapping-powerlines-in-indonesia/), our lab recently undertook a power grid network data acquisition and training project in Indonesia.  This data was to be fed into our [NetworkPlanner](http://networkplanner.modilabs.org) to create a broad electrification plan.  A potential by-product of this effort would be a system to maintain and update grid data for the Indonesian electric utility company (PLN). 
 
@@ -14,43 +14,46 @@ Whatever tools we settled on would need to be simple to train on and use.
   
 ### A First Pass
 
-Since our initial timeline was so short, we needed to make use of existing systems.  For collecting the power equipment nodes along the network, the combination of our own [FormHub](http://formhub.org "FormHub") system along with [ODK Collect](http://opendatakit.org/use/collect/) seemed well-suited.  To capture the network segments we settled on a GPS tracking application called OSMTracker due to its reliability and simplicity.  
+Since our initial timeline was short, we needed to make use of existing systems.  For collecting the power equipment nodes along the network, the combination of our own [FormHub](http://formhub.org "FormHub") system along with [ODK Collect](http://opendatakit.org/use/collect/) seemed well-suited.  To capture the network segments we settled on a GPS tracking application called OSMTracker due to its reliability and simplicity.  
 
 In the initial training with PLN, we made every attempt to impose a structure that would allow us to piece together the network data accurately at a later point.  This involved being disciplined about starting and stopping tracking at appropriate points, capturing branch points with the associated number of radiating segments and even naming the gps trace files according to user and line identity.  In theory, this was all we needed to meet our objectives.  How hard could it be to stitch the points from FormHub and segments from OSMTracker together into a seamless network?  
 
 ### Actually...
 
-It was quite cumbersome.  What we were capturing was amounting to a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data").  With much effort, we could piece together segments captured via OSMTracker into something resembling a network adequate to use as input for NetworkPlanner.  So we could work with the data as it was, but organizing and cleaning it up was haphazard and laborious.  
+It was quite cumbersome.  For the network line data, what we were capturing could have been interpreted as a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data") spread out over a set of files.  We could piece together the line segments from these files into an adequate network as input for NetworkPlanner, but even with all of the structure we imposed, the process was haphazard and laborious.
 
-Further, we had no method for integrating the power equipment node data collected via FormHub and the network line data, which would make this data much more meaningful to PLN.    
+Further, we had no method for integrating the power equipment node data collected via FormHub and the network line data.  An integrated dataset would be much more meaningful to PLN.
 
 ### Filling the void
 
-In [The Mythical Man Month](http://en.wikipedia.org/wiki/The_Mythical_Man-Month "Mythical Man Month"), Brooks demonstrates that in software development, the cost of a bug increases throughout its lifetime (so one should squash them early).  A similar rule seems to hold for data collection processes.  Maybe this is overgeneralizing and stating the obvious, but we found that the longer data sits in an unprocessed state and the further it gets from its source, the more costly it becomes to munge into something useful.  Just days after capturing data out in the field, it was difficult to piece together a network solely from gps traces and some salient points and attributes.  A more integrated system and structure for capturing geometry would help.  Several of us in the lab had positive experiences working with [OpenStreetMap](http://www.openstreetmap.org).  On the surface, it might seem hard to argue against using OSM for this work.  It's an Open Source, distributed spatial data collection system supported by a large, smart, practical and friendly community.  
+At this point, it was obvious that a more centralized and integrated system for capturing geometry would help.  Several of us in the lab had positive experiences working with [OpenStreetMap](http://www.openstreetmap.org) for transportation networks.  Would it work as well for a power network?  
 
-It's impossible to do it justice in this post, but OSM relies on a topological data model abstracted as Nodes (Points), Ways (which reference Nodes) and Relations (which reference Nodes, Ways or other Relations).  Nodes are the fundamental unit of composition, which affords much reduced effort in maintaining the integrity of geometry vs our prior approach or via managing independent shape files of points and lines.  Additionally, OSM data is versioned (so the history of data is retained)...a nice safety-net.  And with practical, efficient user interfaces like JOSM and the new [iD editor](http://ideditor.com) to manipulate this geometry and interact with the OSM repository, our job seemed almost done.  
+It's impossible to do it justice in this post, but OSM relies on a topological data model abstracted as Nodes (Points), Ways (which reference Nodes) and Relations (which reference Nodes, Ways or other Relations).  Nodes are the fundamental unit of composition, which dramatically simplifies maintaining the integrity of geometry vs managing independent files of points and lines.  For instance, a power-line and the transformers connected to it would be related inherently by the fact that the Way representing the power line includes the Nodes representing the transformers.  
 
-### OR SO WE THOUGHT...
+Additionally, OSM data is versioned, so the history of data is retained...a nice safety-net and audit trail.  And with practical, efficient user interfaces like [JOSM](https://wiki.openstreetmap.org/wiki/JOSM) and the new [iD editor](http://ideditor.com) to manipulate the geometry and interact with the OSM repository, our job seemed almost done.  
+
+### Or so we thought...
 
 After extolling the virtues of OpenStreetMap and it's topological elegance we were brought back to Earth to solve two remaining issues:
 
-1.  It was simpler to train and use FormHub for point and attribute data capture in the field.
+1.  We could use OSM tools to capture the power equipment nodes and associated attributes, but it was simpler to train and use FormHub for this aspect of the effort.
 2.  Data that goes into OSM is bound by the [Open Database License](http://opendatacommons.org/licenses/odbl/summary/ "ODbL").  That basically meant we would need to convince PLN to publicize their data from the start.  And even if we did, we still could not load much of the existing grid data we acquired from other sources due to license incompatibility.  
 
-To resolve #1 we decided to continue to use FormHub to collect the salient points of the grid.  This necessitated a synchronization scheme between FormHub and our OpenStreetMap solution, but we'll get to that.  
+To resolve #1 we decided to keep the training and usage simple and continue to use FormHub.  This necessitated a synchronization scheme between FormHub and our OpenStreetMap solution.  
 
-The one obvious solution to #2 was to deploy our own instance of the OpenStreetMap server and database (called the [Rails Port](http://wiki.openstreetmap.org/wiki/The_Rails_Port).  This was NOT a simple option.  It would require us to maintain our instance with an ill-defined path for merging any source and data back to the master at some point.  In the end, we decided that the flexibility gained by having our own instance was worthwhile and we began setting it up.  
+The one obvious solution to #2 was to deploy our own instance (a fork) of the OpenStreetMap server and database (called the [Rails Port](http://wiki.openstreetmap.org/wiki/The_Rails_Port)).  This would not be a straight-forward option.  It not only would require that we maintain this fork, but we wouldn't reap all the benefits of the continuous improvements being made by the OpenStreetMap community.  In the end, we decided that a fork was the best way forward given the flexibility it granted us.  It would also give us a chance to understand the system in more depth and leverage it further or contribute back in the future.    
 
-### THE UGLY DUCKLING
+### Frankenstein or Goldilocks?
 
-As our 2nd round of on-site training and data capture was quickly approaching, it was becoming apparent that our "system" was a bit of a Frankenstein.  The OpenStreetMap piece was fairly new to us and not at all trivial.  To solve synchronization, we manually ran a script to diff the FormHub data with a "synchronization db" and push the new data into our OpenStreetMap instance.  Not pretty.  How would we execute with this Ugly Duckling of a system?  
+As a 2nd round of on-site training and data capture was quickly approaching, our system was evolving into something that could have been perceived as a bit of a Frankenstein.  We were attempting to package 2 complex systems (FormHub and OpenStreetMap), each with their own set of tools and methodologies into a single comprehensive system for this project.  Given our time constraints, the requirements and our existing tools, we prefer to think that our system met the Goldilocks Principle...i.e. it was "just right".  
 
-### EXECUTION
+[System diagram here]
 
-In hindsight, once we had a working system, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  We basically focused on incremental progress in a "damn the torpedoes" style (too much?).  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like Sub-Stations and End-Poles...a simple change with dramatic effect.  
+### Execution
 
-And then we used the system to capture the data we needed as we trained PLN on its use.  We even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
+Once we had a working system, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  We focused on incremental progress in a "damn the torpedoes" style.  To solve synchronization, we wrote a script to diff the FormHub data with a "synchronization db" and push the new data into our OpenStreetMap instance.  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like generators, transformers and end-poles...a simple change with dramatic effect.  And then we used the system to capture the data we needed as we trained PLN on its use.  
 
-### A SWAN?
+### The verdict
 
-Was it elegant?  Hardly.  Effective?  We like to think so.  We used it to capture and integrate over 2300 km of grid data into a cohesive dataset that can now be updated by any of its users.  Will this Ugly Duckling turn into a swan?  A lot of that rides on whether and how we reconcile our instance of OpenStreetMap and its data with the Master.  Time will tell. 
+We captured over 700km of medium-voltage line data and #? power equipment nodes in a few weeks.  We integrated another 1600km of medium-voltage data from other sources into this cohesive repository that can now be updated by any of its users.  We even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
+
