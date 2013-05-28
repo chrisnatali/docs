@@ -20,7 +20,7 @@ In theory, this was all we needed to meet our objectives.  How hard could it be 
 
 ### Actually...
 
-It was quite cumbersome.  For the network line data, what we were capturing could have been interpreted as a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data") spread out over a set of files.  We were able to piece together the line segments from these files into an adequate network as input for NetworkPlanner, but the process was haphazard and laborious.
+It was quite cumbersome.  For the network line data, what we were capturing could have been interpreted as a plate of [Cartographic Spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data") spread out over a set of files.  We were able to piece together the line segments from these files into an adequate network as input for NetworkPlanner, but the process was haphazard and laborious.
 
 Further, we had no method for integrating the power equipment node data collected via FormHub and the network line data.  An integrated dataset would be much more meaningful to PLN.
 
