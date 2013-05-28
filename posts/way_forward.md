@@ -1,18 +1,22 @@
-# A "WAY" FORWARD
+# A "WAY" FORWARD:  Streamlining grid data collection with OpenStreetMaps
 
-As described in a previous post, our lab recently undertook the task of assisting Indonesia's electric utility company (PLN) in digitally capturing a subset of their massive power grid.  The data would then be used as an input to our [NetworkPlanner](http://networkplanner.modilabs.org) tool to create a broad electrification plan.  A potential by-product of this effort would be a system to maintain and update their grid data.  This post is about the evolution of that system from a software system engineering (?) perspective.    
+As described in a [previous post](http://modilabs.github.io/modilabs-site/blog/2013/05/16/mapping-powerlines-in-indonesia/), our lab recently undertook a power grid network data acquisition and training project in Indonesia.  This data was to be fed into our [NetworkPlanner](http://networkplanner.modilabs.org) to create a broad electrification plan.  A potential by-product of this effort would be a system to maintain and update grid data for the Indonesian electric utility company (PLN). 
 
-### STRIKING WHILE THE IRON IS HOT
+The opportunity was presented to us a few months ago and while the initial timeline was really short (2 days!), we jumped at the chance to help on such an important project and hone our data collection skills in the process.  
 
-4 months ago, our Software Engineering team in NY was contacted by our Energy Planning team who was in Indonesia with an urgent request.  The details weren't too clear at first, but we understood that we had agreed to take on a project to map some Medium Voltage line for PLN.  We had a sense that an opportunity like this would present itself, but envisioned a timeline of at least a few weeks.  We soon realized we needed to be thinking in terms of days, even hours, because the training and data acquisition was to start in...2 days!  
+### Requirements
 
-Were we really willing to sacrifice architectural elegance in order to take advantage of this opportunity?  [Architecture Astronauts](http://www.joelonsoftware.com/items/2008/05/01.html) unite!
+NetworkPlanner takes Supply and Demand data as input and generates a cost optimized plan for meeting that Demand.  Demand data is in the form of points, representing consumers to connect.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture these existing network segments in sufficient detail to generate an accurate electrification plan.  
+
+A secondary objective was to capture detail regarding nodes along this network that were important to PLN.  These nodes represented power grid equipment such as generators, transformers and safety devices.  
+
+Whatever tools we settled on would need to be reliable in an off-grid setting and simple to train and use.  
   
-### REALITY
+### A First Pass
 
-OK, the situation wasn't THAT dire.  We actually have a proven set of tools for data collection centered around [FormHub](http://formhub.org "FormHub").  And our initial approach was to utilize a combination of FormHub for salient point (transformers, sub-stations) capture and a GPS tracking application called OSMTracker to capture the medium-voltage line data.  In theory, this was all we needed to meet our goals.  After all, it's just points and lines, right?  How hard could it be to stitch them together into a seamless network later?  
+Since our initial timeline was so short, we needed to make use of existing systems.  For collecting the power equipment nodes along the network, [FormHub](http://formhub.org "FormHub") seemed well-suited (say more?).  We settled on a GPS tracking application called OSMTracker to capture the network segments due to its reliability and simplicity.  In theory, this was all we needed to meet our objectives.  How hard could it be to stitch the points from FormHub and segments from OSMTracker together into a seamless network?  
 
-### ACTUALLY...
+### Actually...
 
 It was kind of cumbersome.  In our initial training with PLN, we made an attempt to impose a structure that would allow us to piece together the network data accurately at a later point.  This involved being disciplined about starting and stopping tracking at appropriate points, capturing branch points with the associated number of radiating segments and even naming the gps trace files according to the mv-line identity.  Again, the rational seemed sound, but what we captured was quickly amounting to a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data").  We could work with it, but organizing it and cleaning it up was quite laborious.  
 
@@ -20,7 +24,7 @@ It was kind of cumbersome.  In our initial training with PLN, we made an attempt
 
 In [The Mythical Man Month](http://en.wikipedia.org/wiki/The_Mythical_Man-Month "Mythical Man Month"), Brooks demonstrates that in software development, the cost of a bug increases throughout its lifetime (so one should squash them early).  A similar rule seems to hold for data collection processes.  Maybe this is overgeneralizing and stating the obvious, but we found that the longer data sits in an unprocessed state and the further it gets from its source, the more costly it becomes to munge into something useful.  Just days after capturing data out in the field, it was difficult to piece together a network solely from gps traces and some salient points and attributes.  A more integrated system and structure for capturing geometry would help.  Several of us in the lab had positive experiences working with [OpenStreetMap](http://www.openstreetmap.org).  On the surface, it might seem hard to argue against using OSM for this work.  It's an Open Source, distributed spatial data collection system supported by a large, smart, practical and friendly community.  
 
-I can't do it justice in this post, but OSM relies on a topological data model abstracted as Nodes (Points), Ways (which reference Nodes) and Relations (which reference Nodes, Ways or other Relations).  Nodes are the fundamental unit of composition, which affords much reduced effort in maintaining the integrity of geometry vs our prior approach or via managing independent shape files of points and lines.  Additionally, OSM data is versioned (so the history of data is retained)...a nice safety-net.  And with practical, efficient user interfaces like JOSM and the new [iD editor](http://ideditor.com) to manipulate this geometry and interact with the OSM repository, our job seemed almost done.  
+It's impossible to do it justice in this post, but OSM relies on a topological data model abstracted as Nodes (Points), Ways (which reference Nodes) and Relations (which reference Nodes, Ways or other Relations).  Nodes are the fundamental unit of composition, which affords much reduced effort in maintaining the integrity of geometry vs our prior approach or via managing independent shape files of points and lines.  Additionally, OSM data is versioned (so the history of data is retained)...a nice safety-net.  And with practical, efficient user interfaces like JOSM and the new [iD editor](http://ideditor.com) to manipulate this geometry and interact with the OSM repository, our job seemed almost done.  
 
 ### OR SO WE THOUGHT...
 
@@ -43,6 +47,6 @@ In hindsight, once we had a working system, our strategy resembled [Fire and Mot
 
 And then we used the system to capture the data we needed as we trained PLN on its use.  We even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
 
-## A SWAN?
+### A SWAN?
 
 Was it elegant?  Hardly.  Effective?  We like to think so.  We used it to capture and integrate over 2300 km of grid data into a cohesive dataset that can now be updated by any of its users.  Will this Ugly Duckling turn into a swan?  A lot of that rides on whether and how we reconcile our instance of OpenStreetMap and its data with the Master.  Time will tell. 
