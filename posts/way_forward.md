@@ -6,21 +6,25 @@ The opportunity was presented to us a few months ago and while the initial timel
 
 ### Requirements
 
-NetworkPlanner takes Supply and Demand data as input and generates a cost optimized plan for meeting that Demand.  Demand data is in the form of points, representing consumers to connect.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture these existing network segments in sufficient detail to generate an accurate electrification plan.  
+NetworkPlanner takes Supply and Demand data as input and generates a cost optimized plan for meeting that Demand.  Demand data is in the form of locations (x, y coordinates) with attributes such as population. These represent th consumers to connect.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture this supply data (existing network segments) in sufficient detail to generate an accurate electrification plan.  
 
 A secondary objective was to capture detail regarding nodes along this network that were important to PLN.  These nodes represented power grid equipment such as generators, transformers and safety devices.  
 
-Whatever tools we settled on would need to be reliable in an off-grid setting and simple to train and use.  
+Whatever tools we settled on would need to be simple to train on and use.  
   
 ### A First Pass
 
-Since our initial timeline was so short, we needed to make use of existing systems.  For collecting the power equipment nodes along the network, [FormHub](http://formhub.org "FormHub") seemed well-suited (say more?).  We settled on a GPS tracking application called OSMTracker to capture the network segments due to its reliability and simplicity.  In theory, this was all we needed to meet our objectives.  How hard could it be to stitch the points from FormHub and segments from OSMTracker together into a seamless network?  
+Since our initial timeline was so short, we needed to make use of existing systems.  For collecting the power equipment nodes along the network, the combination of our own [FormHub](http://formhub.org "FormHub") system along with [ODK Collect](http://opendatakit.org/use/collect/) seemed well-suited.  To capture the network segments we settled on a GPS tracking application called OSMTracker due to its reliability and simplicity.  
+
+In the initial training with PLN, we made every attempt to impose a structure that would allow us to piece together the network data accurately at a later point.  This involved being disciplined about starting and stopping tracking at appropriate points, capturing branch points with the associated number of radiating segments and even naming the gps trace files according to user and line identity.  In theory, this was all we needed to meet our objectives.  How hard could it be to stitch the points from FormHub and segments from OSMTracker together into a seamless network?  
 
 ### Actually...
 
-It was kind of cumbersome.  In our initial training with PLN, we made an attempt to impose a structure that would allow us to piece together the network data accurately at a later point.  This involved being disciplined about starting and stopping tracking at appropriate points, capturing branch points with the associated number of radiating segments and even naming the gps trace files according to the mv-line identity.  Again, the rational seemed sound, but what we captured was quickly amounting to a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data").  We could work with it, but organizing it and cleaning it up was quite laborious.  
+It was quite cumbersome.  What we were capturing was amounting to a plate of [cartographic spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data").  With much effort, we could piece together segments captured via OSMTracker into something resembling a network adequate to use as input for NetworkPlanner.  So we could work with the data as it was, but organizing and cleaning it up was haphazard and laborious.  
 
-### FILLING THE VOID
+Further, we had no method for integrating the power equipment node data collected via FormHub and the network line data, which would make this data much more meaningful to PLN.    
+
+### Filling the void
 
 In [The Mythical Man Month](http://en.wikipedia.org/wiki/The_Mythical_Man-Month "Mythical Man Month"), Brooks demonstrates that in software development, the cost of a bug increases throughout its lifetime (so one should squash them early).  A similar rule seems to hold for data collection processes.  Maybe this is overgeneralizing and stating the obvious, but we found that the longer data sits in an unprocessed state and the further it gets from its source, the more costly it becomes to munge into something useful.  Just days after capturing data out in the field, it was difficult to piece together a network solely from gps traces and some salient points and attributes.  A more integrated system and structure for capturing geometry would help.  Several of us in the lab had positive experiences working with [OpenStreetMap](http://www.openstreetmap.org).  On the surface, it might seem hard to argue against using OSM for this work.  It's an Open Source, distributed spatial data collection system supported by a large, smart, practical and friendly community.  
 
