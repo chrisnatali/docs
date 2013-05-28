@@ -53,13 +53,13 @@ Given our time constraints, the requirements and our existing tools, we prefer t
 
 ### Execution
 
-Once we had a working system, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  To summarize, we focused on incremental progress in a "damn the torpedoes" style.  To solve synchronization, we wrote a script to diff the FormHub data with a "synchronization db" and push the new data into our OpenStreetMap instance.  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like generators, transformers and end-poles...a simple change with dramatic effect.  And then we used the system to capture the data we needed as we trained PLN on its use.  While in Indonesia, we even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
+Once we had a working system, our execution strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  To summarize, we focused on incremental progress in a "damn the torpedoes" style.  To solve synchronization, we wrote a script to diff the FormHub data with a "synchronization db" and push the new data into our OpenStreetMap instance.  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like generators, transformers and end-poles...a simple change with dramatic effect.  And then we used the system to capture the data we needed as we trained PLN on its use.  While in Indonesia, we even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
 
 ### Results
 
 Alongside PLN staff, we captured over 700km of medium-voltage line data and #? power equipment nodes in under 6 days of work.  We integrated another 1600km of medium-voltage line data from other sources into a cohesive network that can now be added to or corrected by PLN.  From this repository we can export a subset of the power network and feed it into NetworkPlanner to create a plan based on fresh data.  In the course of meeting our original objective of defining a system for network data acquisition, we enhanced our entire electrification planning process.    
 
-Stated more whimsically, we defeated Frankenstein with Fire and Motion and eliminated our Cartographic Spaghetti with a Fork ;)
+Stated more whimsically, we tamed Frankenstein with Fire and Motion and devoured our Cartographic Spaghetti with a Fork ;)
 
 [Map here]
 
