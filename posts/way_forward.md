@@ -49,7 +49,7 @@ As a 2nd round of on-site training and data capture was quickly approaching, our
 
 Given our time constraints, the requirements and our existing tools, we prefer to think that our system evolved via the Goldilocks Principle.  It has enough architecture and design to provide structure and make data capture efficient, but not so much as to be impractical or introduce long delays in availability...i.e. it is "just right".  
 
-![Design Diagram](http://farm6.staticflickr.com/5450/8871373109_9d3f26414f.jpg)
+![Design Diagram](http://farm6.staticflickr.com/5450/8871373109_80f23581a1_o.png)
 
 ### Execution
 
