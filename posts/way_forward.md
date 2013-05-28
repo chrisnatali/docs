@@ -45,15 +45,19 @@ The one obvious solution to #2 was to deploy our own instance (a fork) of the Op
 
 ### Frankenstein or Goldilocks?
 
-As a 2nd round of on-site training and data capture was quickly approaching, our system was evolving into something that could have been perceived as a bit of a Frankenstein.  We were attempting to package 2 complex systems (FormHub and OpenStreetMap), each with their own set of tools and methodologies into a single comprehensive system for this project.  Given our time constraints, the requirements and our existing tools, we prefer to think that our system met the Goldilocks Principle...i.e. it was "just right".  
+As a 2nd round of on-site training and data capture was quickly approaching, our system was evolving into something that could have been perceived as a bit of a Frankenstein.  We were attempting to package 2 complex systems (FormHub and OpenStreetMap), each with their own set of tools and methodologies into a single comprehensive system for this project.  
+
+Given our time constraints, the requirements and our existing tools, we prefer to think that our system evolved via the Goldilocks Principle.  It has enough architecture and design to provide structure and make data capture efficient, but not so much as to be impractical or introduce long delays in availability...i.e. it is "just right".  
 
 [System diagram here]
 
 ### Execution
 
-Once we had a working system, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  We focused on incremental progress in a "damn the torpedoes" style.  To solve synchronization, we wrote a script to diff the FormHub data with a "synchronization db" and push the new data into our OpenStreetMap instance.  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like generators, transformers and end-poles...a simple change with dramatic effect.  And then we used the system to capture the data we needed as we trained PLN on its use.  
+Once we had a working system, our strategy resembled [Fire and Motion](http://www.joelonsoftware.com/articles/fog0000000339.html "Fire and Motion").  To summarize, we focused on incremental progress in a "damn the torpedoes" style.  To solve synchronization, we wrote a script to diff the FormHub data with a "synchronization db" and push the new data into our OpenStreetMap instance.  We tailored our FormHub forms to be more consistent with the OpenStreetMap tagging paradigm.  We customized JOSM to display icons denoting specific power features like generators, transformers and end-poles...a simple change with dramatic effect.  And then we used the system to capture the data we needed as we trained PLN on its use.  While in Indonesia, we even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
 
-### The verdict
+### Results
 
-We captured over 700km of medium-voltage line data and #? power equipment nodes in a few weeks.  We integrated another 1600km of medium-voltage data from other sources into this cohesive repository that can now be updated by any of its users.  We even made time to step on a few sea-urchins, get treated at a local health-clinic, surf some incredible waves (including an off-shore reef), scuba-dive some fantastic water and simply experience a beautiful country and culture.  
+Alongside PLN staff, we captured over 700km of medium-voltage line data and #? power equipment nodes in under 6 days of work.  We integrated another 1600km of medium-voltage line data from other sources into this cohesive repository that can now be added to or corrected by PLN.  From this repository we can export a subset of the power network and feed it into NetworkPlanner to create a plan based on fresh data.  In the course of meeting our original objective of defining a system for network data acquisition, we enhanced our entire electrification planning process.    
+
+[Map here]
 
