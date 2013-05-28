@@ -6,7 +6,7 @@ The opportunity was presented to us a few months ago and while the initial timel
 
 ### Requirements
 
-To provide some context, it helps to understand that NetworkPlanner takes Supply and Demand data as input and generates a cost optimized plan for meeting that Demand.  Demand data is in the form of locations (x, y coordinates) with attributes such as population. These represent the consumers to supply.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture this supply data (existing network segments) in sufficient detail to generate an accurate electrification plan.  
+To provide some context, it helps to understand that NetworkPlanner takes supply and demand data as input and generates a cost optimized plan for meeting that Demand.  Demand data is in the form of locations (x, y coordinates) with attributes such as population. These represent the consumers to supply.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture this supply data (existing network segments) in sufficient detail to generate an accurate electrification plan.  
 
 A secondary objective was to capture detail regarding nodes along this network that were important to PLN.  These nodes represented power grid equipment such as generators, transformers and safety devices.  
   
@@ -14,13 +14,13 @@ A secondary objective was to capture detail regarding nodes along this network t
 
 Since our initial timeline was short, we needed to make use of existing systems.  For collecting the power equipment nodes along the network, the combination of our own [FormHub](http://formhub.org "FormHub") system and [ODK Collect](http://opendatakit.org/use/collect/) were well suited.  FormHub provides hosted services for managing survey forms and associated data.  ODK would run on users Android devices and allow them to fill out survery forms (regarding power equipment data) and submit to FormHub.  
 
-To capture the network segments we settled on using a GPS tracking application called OSMTracker due to its simplicity.  OSMTracker would also run on users Android devices, primarily in the background.  It works by capturing latitude, longitude at regular intervals while traveling along a route.  This results in an ordered set of points representing a set of connected segments, or in our case, a branch of a power network.    
+To capture the network segments we settled on using a GPS tracking application called OSMTracker due to its simplicity.  OSMTracker would also run on users Android devices, primarily in the background.  It works by capturing latitude and longitude at regular intervals while traveling along a route.  This results in an ordered set of points representing a set of connected segments, or in our case, a branch of a power network.    
 
 In theory, this was all we needed to meet our objectives.  How hard could it be to stitch the points from FormHub and lines from OSMTracker together into a seamless network?  
 
 ### Actually...
 
-It was quite cumbersome.  For the network line data, what we were capturing could have been interpreted as a plate of [Cartographic Spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data") spread out over a set of files.  We were able to piece together the line segments from these files into an adequate network as input for NetworkPlanner, but the process was haphazard and laborious.
+It was quite cumbersome.  For the network line data, what we were capturing could have been mistaken for a plate of [Cartographic Spaghetti](http://support.esri.com/en/knowledgebase/GISDictionary/term/spaghetti%20data "Spaghetti Data") spread out over a set of files.  We were able to piece together the line segments from these files into an adequate network as input for NetworkPlanner, but the process was haphazard and laborious.
 
 Further, we had no method for integrating the power equipment node data collected via FormHub and the network line data.  An integrated dataset would be much more meaningful to PLN.
 
@@ -28,7 +28,7 @@ Further, we had no method for integrating the power equipment node data collecte
 
 At this point, it was obvious that a more centralized and integrated system for capturing geometry would help.  Several of us in the lab had positive experiences working with [OpenStreetMap](http://www.openstreetmap.org) for transportation networks.  Would it work as well for a power network?  
 
-It's impossible to do it justice in this post, but OSM relies on a topological data model abstracted as Nodes (Points), Ways (which reference Nodes) and Relations (which reference Nodes, Ways or other Relations).  Nodes are the fundamental unit of composition, which dramatically simplifies maintaining the integrity of geometry vs managing independent files of points and lines.  For instance, a power-line and the transformers connected to it would be related inherently by the fact that the Way representing the power line includes the Nodes representing the transformers.  
+It's impossible to do it justice in this post, but OSM relies on a topological data model abstracted as Nodes (Points), Ways (which reference Nodes) and Relations (which reference Nodes, Ways or other Relations).  Nodes are the fundamental unit of composition, which dramatically simplifies maintaining the integrity of geometry vs managing independent files of points and lines.  For instance, a power line and the transformers connected to it would be related inherently by the fact that the Way representing the power line includes the Nodes representing the transformers.  
 
 Additionally, OSM data is versioned, so the history of data is retained, a nice safety-net and audit trail.  And with practical, efficient user interfaces like [JOSM](https://wiki.openstreetmap.org/wiki/JOSM) and the new [iD editor](http://ideditor.com) to manipulate the geometry and interact with the OSM repository, our job seemed almost done.  
 
@@ -41,13 +41,13 @@ After extolling the virtues of OpenStreetMap and it's topological elegance we we
 
 To resolve #1 we decided to keep the training and usage simple and continue to use FormHub.  This necessitated a synchronization scheme between FormHub and our OpenStreetMap solution.  
 
-The one obvious solution to #2 was to deploy our own instance (known as a Fork) of the OpenStreetMap server and database (called the [Rails Port](http://wiki.openstreetmap.org/wiki/The_Rails_Port)).  This would not be a straight-forward option.  It would not only require us maintain this fork, but we wouldn't reap all the benefits of the continuous improvements being made by the OpenStreetMap community.  In the end, we decided that a fork was the best way forward given the flexibility it granted us.  It would also give us a chance to understand the system in more depth to better leverage it and contribute back in the future.    
+The one obvious solution to #2 was to deploy our own instance (known as a Fork) of the OpenStreetMap server and database (called the [Rails Port](http://wiki.openstreetmap.org/wiki/The_Rails_Port)).  This would not be a straight-forward option.  It would not only require us to maintain this fork, but we wouldn't reap all the benefits of the continuous improvements being made by the OpenStreetMap community.  In the end, we decided that a fork was the best way forward given the flexibility it granted us.  It would also give us a chance to understand the system in more depth to better leverage it and contribute back in the future.    
 
 ### Frankenstein or Goldilocks?
 
-As a 2nd round of on-site training and data capture was quickly approaching, our system was evolving into something that could have been perceived as a Frankenstein.  We were attempting to package 2 complex systems (FormHub and OpenStreetMap), each with their own set of tools and methodologies into a single comprehensive system for this project.  
+As a 2nd round of on-site training and data capture was quickly approaching, our system was evolving into something that might have been perceived as a Frankenstein.  We were attempting to package 2 complex systems (FormHub and OpenStreetMap), each with their own set of tools and methodologies into a single comprehensive system for this project.  
 
-Given our time constraints, the requirements and our existing tools, we prefer to think that our system evolved via the Goldilocks Principle.  It has enough architecture and design to provide structure and make data capture efficient, but not so much as to be impractical or introduce long delays in availability...i.e. it is "just right".  
+Given our time constraints, the requirements and our existing tools, we prefer to think that our system evolved via the Goldilocks Principle.  With enough architecture and design to provide structure and make data capture efficient, but not so much as to be impractical or introduce delays in the project...i.e. "just right".  
 
 ![Design Diagram](http://farm6.staticflickr.com/5450/8871373109_80f23581a1_o.png)
 
