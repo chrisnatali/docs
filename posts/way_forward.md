@@ -28,7 +28,7 @@ It's impossible to do it justice in this post, but OSM relies on a topological d
 
 ### OR SO WE THOUGHT...
 
-After extolling the virtues of OpenStreetMap and it's topological elegance we were brought back to Earth by two remaining issues:
+After extolling the virtues of OpenStreetMap and it's topological elegance we were brought back to Earth to solve two remaining issues:
 
 1.  It was simpler to train and use FormHub for point and attribute data capture in the field.
 2.  Data that goes into OSM is bound by the [Open Database License](http://opendatacommons.org/licenses/odbl/summary/ "ODbL").  That basically meant we would need to convince PLN to publicize their data from the start.  And even if we did, we still could not load much of the existing grid data we acquired from other sources due to license incompatibility.  
