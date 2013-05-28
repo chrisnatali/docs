@@ -1,4 +1,4 @@
-# A "WAY" FORWARD:  Streamlining power grid data collection with OpenStreetMaps
+# A "WAY" FORWARD:  Streamlining power grid data collection with OpenStreetMap
 
 As described in a [previous post](http://modilabs.github.io/modilabs-site/blog/2013/05/16/mapping-powerlines-in-indonesia/), our lab recently undertook a power grid network data acquisition and training project in Indonesia.  This data was to be fed into our [NetworkPlanner](http://networkplanner.modilabs.org) to create a broad electrification plan.  A potential by-product of this effort would be a system to maintain and update grid data for the Indonesian electric utility company (PLN). 
 
