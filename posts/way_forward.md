@@ -6,7 +6,7 @@ The opportunity was presented to us a few months ago and while the initial timel
 
 ### Requirements
 
-To provide some context, it helps to understand that NetworkPlanner takes supply and demand data as input and generates a cost optimized plan for meeting that Demand.  Demand data is in the form of locations (x, y coordinates) with attributes such as population. These represent the consumers to supply.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture this supply data (existing network segments) in sufficient detail to generate an accurate electrification plan.  
+To provide some context, it helps to understand that NetworkPlanner takes supply and demand data as input and generates a cost optimized plan for meeting that demand.  Demand data is in the form of locations (x, y coordinates) with attributes such as population. These represent the consumers to supply.  Supply data is in the form of interconnected segments, representing the existing network from which to extend in order to connect new consumers.  Our primary objective was to capture this supply data (existing network segments) in sufficient detail to generate an accurate electrification plan.  
 
 A secondary objective was to capture detail regarding nodes along this network that were important to PLN.  These nodes represented power grid equipment such as generators, transformers and safety devices.  
   
@@ -49,7 +49,7 @@ As a 2nd round of on-site training and data capture was quickly approaching, our
 
 Given our time constraints, the requirements and our existing tools, we prefer to think that our system evolved via the Goldilocks Principle.  With enough architecture and design to provide structure and make data capture efficient, but not so much as to be impractical or introduce delays in the project...i.e. "just right".  
 
-![Design Diagram](http://farm6.staticflickr.com/5450/8871373109_80f23581a1_o.png)
+![Design Diagram](http://farm8.staticflickr.com/7402/8879385267_dfd51f7025_o.png)
 
 ### Execution
 
