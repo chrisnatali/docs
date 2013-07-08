@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.48+devel r12340 custom"
    sodipodi:docname="gridmaps-design.svg"
-   inkscape:export-filename="/home/cjn/src/presentations/gridmaps-design.png"
+   inkscape:export-filename="/home/cjn/src/docs/diagrams/gridmaps-design.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -153,14 +153,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="282.0187"
-     inkscape:cy="376.63831"
+     inkscape:cx="90.108788"
+     inkscape:cy="387.36347"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1918"
-     inkscape:window-height="1182"
-     inkscape:window-x="2560"
+     inkscape:window-width="2558"
+     inkscape:window-height="1422"
+     inkscape:window-x="0"
      inkscape:window-y="16"
      inkscape:window-maximized="0"
      units="mm" />
@@ -172,7 +172,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -210,52 +210,37 @@
            id="tspan7592"
            sodipodi:role="line">formhub</tspan></text>
     </g>
-    <g
-       id="g39"
-       transform="translate(-2,360)">
-      <rect
-         style="fill:#f0f0f0;fill-opacity:1;stroke:#3c3c3c;stroke-width:1.17686903;stroke-linejoin:miter;stroke-opacity:1"
-         id="rect7594"
-         width="149.82314"
-         height="109.82313"
-         x="384.5994"
-         y="67.859947"
-         rx="4.7499638"
-         ry="3.9176865" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text22"
-         y="89.366966"
-         x="395.5015"
-         style="font-size:16.92325401px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif"
-         xml:space="preserve"><tspan
-           y="89.366966"
-           x="395.5015"
-           id="tspan24"
-           sodipodi:role="line">OpenStreetMap</tspan></text>
-      <text
-         sodipodi:linespacing="125%"
-         id="text26"
-         y="109.33099"
-         x="403.12268"
-         style="font-size:16.55405617px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif"
-         xml:space="preserve"><tspan
-           y="109.33099"
-           x="403.12268"
-           id="tspan28"
-           sodipodi:role="line">The Rails Port</tspan></text>
-      <text
-         sodipodi:linespacing="125%"
-         id="text30"
-         y="138.263"
-         x="391.50369"
-         style="font-size:15.41535282px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif"
-         xml:space="preserve"><tspan
-           y="138.263"
-           x="391.50369"
-           id="tspan32"
-           sodipodi:role="line">(private instance)</tspan></text>
-    </g>
+    <rect
+       ry="3.9176865"
+       rx="4.7499638"
+       y="427.85995"
+       x="382.5994"
+       height="109.82313"
+       width="149.82314"
+       id="rect7594"
+       style="fill:#f0f0f0;fill-opacity:1;stroke:#3c3c3c;stroke-width:1.17686903;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.92325401px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif"
+       x="393.5015"
+       y="449.36697"
+       id="text22"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan24"
+         x="393.5015"
+         y="449.36697">OpenStreetMap</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16.55405617px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif"
+       x="401.12268"
+       y="469.33099"
+       id="text26"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan28"
+         x="401.12268"
+         y="469.33099">The Rails Port</tspan></text>
     <rect
        style="fill:#dcdce6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.15695453px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="rect858"
@@ -752,5 +737,17 @@
        inkscape:connector-curvature="0"
        transform="translate(0,308.26772)"
        sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:20.80145264px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif"
+       x="404.67813"
+       y="526.37524"
+       id="text273"
+       sodipodi:linespacing="125%"
+       transform="scale(1.0499627,0.95241478)"><tspan
+         sodipodi:role="line"
+         id="tspan275"
+         x="404.67813"
+         y="526.37524">(Fork)</tspan></text>
   </g>
 </svg>
