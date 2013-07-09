@@ -6,12 +6,16 @@
 \date{May 22, 2013}
 \begin{document}
 
-\begin{frame}{Resource Access}
+\begin{frame}{Development Planning}
+
+  Improving Access to Resources
+
+  \bigskip 
 
   What: 
   \begin{itemize}
-  \item[] Healthcare:  Clinics, Hospitals...
-  \item[] Education:  Schools (Primary, Secondary, etc)
+  \item[] Healthcare:  Clinics, Hospitals, Doctors, Nurses...
+  \item[] Education:  Schools, Teachers, Classrooms...
   \item[] Water:  Wells, Pumps, Taps...
   \item[] Electricity:  Generators, Transformers, LV/MV line...
   \end{itemize}
@@ -34,22 +38,28 @@
 
   How: 
   \begin{itemize}
-  \item[] Collect Data:  From existing sources, via Formhub, other tools
-  \item[] Frame it in Economic terms (Supply, Demand)
-  \item[] Assess "Gaps" in supply 
+  \item[] Identify problem
+  \item[] Collect data:  From existing sources, Formhub, other tools
+  \item[] Frame it in economic terms (supply, demand)
+  \item[] Analyze "gaps" in supply 
   \item[] Develop plan to fill the gaps
   \end{itemize}
 
-  \bigskip 
-  Healthcare:  Facility Planning demo
+\end{frame}
 
-  \bigskip 
-  Sea Urchin Story (Healthcare is more effective with Electricity)
+\begin{frame}{Health Clinic Access Initial}
+  \includegraphics[width=4.5in,height=2.75in]{../diagrams/nigeria-healthcare-initial_6.png}
+\end{frame}
 
+\begin{frame}{Health Clinic Access Optimized}
+  \includegraphics[width=4.5in,height=2.75in]{../diagrams/nigeria-healthcare-optimized_16.png}
 \end{frame}
 
 \begin{frame}{Electrification Planning}
   
+  Sea Urchin Story (Healthcare is more effective with Electricity)
+
+  \bigskip 
   Inputs: 
   \begin{itemize}
   \item[] Supply:  Existing grid
@@ -67,81 +77,34 @@
 
 \end{frame}
 
+\begin{frame}{NetworkPlanner Liberia}
+  \includegraphics[width=4.5in,height=2.75in]{../diagrams/network-planner-liberia.png}
+\end{frame}
+
 \begin{frame}{Data Collection System}
   \includegraphics[width=4in,height=3in]{../diagrams/gridmaps-design.png}
 \end{frame}
 
-\begin{frame}{OpenStreetMap}
-  Virtues:
-  \begin{itemize}
-  \item[] Topological Model:  Nodes, Ways and Relations
-  \item[] Flexibility via Tags
-  \item[] Versioned
-  \item[] Open
-  \item[] Loads of existing data and tools
-  \end{itemize}
-
-
-  \bigskip 
-
-  Issues:
-  \begin{itemize}
-  \item[] Open license might not fly
-  \item[] Technical uncertainty
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Approach 1: The Black Hole}
-  \begin{center}
-
-
-  Points via FormHub, Lines via OSMTracker (GPS)
-  
-  $\Downarrow$ 
-  
-  Best Practices, Dropbox 
-  
-  $\Downarrow$ 
-  
-  Ill-Defined Processing 
-  \end{center}
-
-\end{frame}
-
-\begin{frame}{Approach 2: Frankenstein}
-  \begin{center}
-
-
-  Points via FormHub, Lines via OSMTracker (GPS)
-  
-  $\Downarrow$ 
-  
-  Synchronization, JOSM 
-  
-  $\Downarrow$ 
-  
-  Private Instance of OpenStreetMaps (plngridmaps.modilabs.org)
-  \end{center}
-
-\end{frame}
-
 \begin{frame}{Results}
 
-
-  Numbers (toward our Primary Goal):
+  Numbers:
   \begin{itemize}
-  \item[] 700 km of mv grid digitized
+  \item[] 700 km of new mv grid data captured
   \item[] Average of about 50 km of mv grid captured per day
-  \item[] 2357 km of mv grid managed 
+  \item[] 7000 km of mv grid managed 
   \end{itemize}
   
-  \bigskip 
+\end{frame}
 
-  The System (toward our Secondary Goal):
+\begin{frame}{Data Collection Map}
+  \includegraphics[width=4.5in,height=2.75in]{../diagrams/gridmaps-indo.png}
+\end{frame}
+
+\begin{frame}{The End}
+
   \begin{itemize}
-  \item[] Still not pretty, but effective and improvements to come
+  \item[] Our Lab:  modi.mech.columbia.edu
   \end{itemize}
-  
+ 
 \end{frame}
 \end{document}
