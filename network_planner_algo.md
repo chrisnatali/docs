@@ -16,11 +16,11 @@ Weight of a node $v$:
 
 $V_{max}(v) \to \mathbb{R}$
 
-Minimum edge distance (weight) between subcomponents of a parent component c:
+Min edge distance (weight) between subcomponents of a parent component c:
 
 $E_{min}(c_i, c_j) \to \mathbb{R}$ 
 
-Components connected by edge in a tree:
+Components connected by edge in a spanning tree:
 
 $E_c(e) \to c_i, c_j$ 
 
@@ -51,9 +51,13 @@ $MSF = min \underset{c \in C} \sum \underset{e \in c} \sum E_w(e)$
 $s.t.$
 
 $C_{max}(c_i) > E_{min}(c_i, c_j) \wedge C_{max}(c_j) > E_{min}(c_i, c_j)$
-$\forall c_i, c_j = E_c(e),\forall {e \in C}$
+
+where $c_i, c_j = E_c(e),\forall {e \in C}$
 
 ### Modified Kruskal Minimum Spanning Forest Algorithm
+
+Below is pseudocode for a modified Kruskal's MST algorithm that we use to
+attempt to compute the above. 
 
 Given graph $G(V, E)$ 
 
